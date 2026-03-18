@@ -1,0 +1,19 @@
+{
+  "name": "orangehrm-qa-automation",
+  "version": "1.0.0",
+  "description": "Automatización E2E para OrangeHRM con Cypress",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:headed": "cypress run --headed"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2"
+  },
+  "dependencies": {
+    "docx": "^9.6.1"
+  }
+}

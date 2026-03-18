@@ -1,0 +1,129 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-03-18T21:29:04.583Z",
+    "end": "2026-03-18T21:29:58.114Z",
+    "duration": 53531,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "50c83cff-a42c-4dc5-9787-5af454d66247",
+      "title": "",
+      "fullFile": "cypress\\e2e\\03_recruitment.cy.js",
+      "file": "cypress\\e2e\\03_recruitment.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f7476691-b2ac-422e-900b-516e5fdc201f",
+          "title": "Recruitment - Candidatos y Vacantes",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Debe crear un nuevo candidato",
+              "fullTitle": "Recruitment - Candidatos y Vacantes Debe crear un nuevo candidato",
+              "timedOut": null,
+              "duration": 25686,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/recruitment/viewCandidates');\ncy.wait(2000);\ncy.contains('button', 'Add').click();\ncy.wait(2000);\ncy.url().should('include', 'addCandidate');\ncy.get('input[name=\"firstName\"]').clear().type('Laura');\ncy.get('input[name=\"lastName\"]').clear().type('Gomez');\ncy.get('.oxd-select-wrapper').first().click();\ncy.get('.oxd-select-option').first().click();\ncy.wait(500);\ncy.contains('.oxd-input-group', 'Email').find('input').clear().type('laura.gomez@test.com');\ncy.contains('.oxd-input-group', 'Contact Number').find('input').clear().type('0987654321');\ncy.get('input[type=\"file\"]').selectFile('cypress/fixtures/candidate_cv.pdf', {\n  force: true\n});\ncy.wait(1000);\ncy.intercept('POST', '/web/index.php/api/v2/recruitment/candidates').as('createCandidate');\ncy.get('button[type=\"submit\"]').click();\ncy.wait('@createCandidate', {\n  timeout: 10000\n}).its('response.statusCode').should('eq', 200);\ncy.log('Candidato creado correctamente');",
+              "err": {},
+              "uuid": "98f39de1-2a16-46dc-b560-7bda36f99f04",
+              "parentUUID": "f7476691-b2ac-422e-900b-516e5fdc201f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe crear una nueva vacante",
+              "fullTitle": "Recruitment - Candidatos y Vacantes Debe crear una nueva vacante",
+              "timedOut": null,
+              "duration": 27234,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/recruitment/viewJobVacancy');\ncy.wait(2000);\ncy.contains('button', 'Add').click();\ncy.wait(2000);\ncy.url().should('include', 'addJobVacancy');\nconst vacancyName = 'QA Engineer ' + Date.now();\ncy.get('.oxd-input').eq(1).clear().type(vacancyName);\ncy.get('.oxd-select-wrapper').first().click();\ncy.wait(500);\ncy.get('.oxd-select-option').eq(1).click();\ncy.wait(500);\ncy.get('textarea').clear().type('Vacante para automatizador de pruebas');\ncy.intercept('POST', '/web/index.php/api/v2/recruitment/vacancies').as('createVacancy');\ncy.get('button[type=\"submit\"]').click();\ncy.wait('@createVacancy', {\n  timeout: 10000\n}).its('response.statusCode').should('eq', 200);\ncy.log('Vacante creada correctamente');",
+              "err": {
+                "message": "CypressError: Timed out retrying after 10000ms: `cy.wait()` timed out waiting `10000ms` for the 1st request to the route: `createVacancy`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
+                "estack": "CypressError: Timed out retrying after 10000ms: `cy.wait()` timed out waiting `10000ms` for the 1st request to the route: `createVacancy`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:76065:18)\n    at Object.errByPath (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:76119:10)\n    at checkForXhr (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:135342:84)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:135368:28)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:4338:29)\n    at whenStable (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:143744:68)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:143685:14)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1724:18)\n    at Promise._fulfill (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1668:18)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:5473:46)\nFrom Your Spec Code:\n    at Context.eval (webpack://orangehrm-qa-automation/./cypress/e2e/03_recruitment.cy.js:65:7)",
+                "diff": null
+              },
+              "uuid": "d5b22025-05bf-4209-b916-032d15facb49",
+              "parentUUID": "f7476691-b2ac-422e-900b-516e5fdc201f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "98f39de1-2a16-46dc-b560-7bda36f99f04"
+          ],
+          "failures": [
+            "d5b22025-05bf-4209-b916-032d15facb49"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 52920,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

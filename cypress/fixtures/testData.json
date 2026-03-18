@@ -1,0 +1,38 @@
+{
+  "login": {
+    "username": "Admin",
+    "password": "admin123",
+    "url": "/web/index.php/auth/login"
+  },
+  "employee": {
+    "firstName": "Carlos",
+    "middleName": "Andres",
+    "lastName": "Gomez",
+    "employeeId": "EMP001",
+    "driverLicense": "DL123456",
+    "nationality": "Ecuadorian",
+    "maritalStatus": "Single",
+    "gender": "Male",
+    "dateOfBirth": "1990-05-15"
+  },
+  "candidate": {
+    "firstName": "Maria",
+    "lastName": "Lopez",
+    "email": "maria.lopez.test@example.com",
+    "contactNumber": "0987654321",
+    "resume": "candidate_cv.pdf",
+    "keywords": "QA, Testing, Automation",
+    "notes": "Candidata con experiencia en testing automatizado"
+  },
+  "vacancy": {
+    "name": "QA Engineer",
+    "jobTitle": "QA Engineer",
+    "numPositions": "2",
+    "description": "Vacante para ingeniero de QA con experiencia en automatización",
+    "status": "Active"
+  },
+  "buzz": {
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "comment": "Excelente publicación, muy interesante el contenido compartido!"
+  }
+}

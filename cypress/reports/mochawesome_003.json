@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-03-18T21:30:08.076Z",
+    "end": "2026-03-18T21:30:52.644Z",
+    "duration": 44568,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "30a68572-6cc3-4648-83e2-7dc41c828303",
+      "title": "",
+      "fullFile": "cypress\\e2e\\04_buzz.cy.js",
+      "file": "cypress\\e2e\\04_buzz.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ec0c1e01-2329-4b08-9810-48d343e4843e",
+          "title": "Buzz Newsfeed - Video y Comentarios",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Debe crear una publicación de video",
+              "fullTitle": "Buzz Newsfeed - Video y Comentarios Debe crear una publicación de video",
+              "timedOut": null,
+              "duration": 28193,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/buzz/viewBuzz');\ncy.wait(4000);\ncy.contains('Share Video').click({\n  force: true\n});\ncy.wait(2000);\ncy.get('body').then($body => {\n  if ($body.find('input[placeholder=\"Paste Video URL\"]').length > 0) {\n    cy.get('input[placeholder=\"Paste Video URL\"]').type('https://www.youtube.com/watch?v=dQw4w9WgXcQ');\n  } else {\n    cy.get('textarea').filter(':visible').last().type('https://www.youtube.com/watch?v=dQw4w9WgXcQ');\n  }\n});\ncy.wait(1000);\ncy.contains('button', 'Share').last().click({\n  force: true\n});\ncy.wait(4000);\ncy.visit('/web/index.php/buzz/viewBuzz');\ncy.wait(3000);\ncy.get('.orangehrm-buzz-post-body').should('exist');",
+              "err": {},
+              "uuid": "d6e35ea6-4632-4607-b045-7d94c7b46dcc",
+              "parentUUID": "ec0c1e01-2329-4b08-9810-48d343e4843e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe comentar en el post más popular",
+              "fullTitle": "Buzz Newsfeed - Video y Comentarios Debe comentar en el post más popular",
+              "timedOut": null,
+              "duration": 15857,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/buzz/viewBuzz');\ncy.wait(4000);\ncy.get('button').find('.bi-chat-text-fill').first().parent().click({\n  force: true\n});\ncy.wait(1500);\ncy.get('.orangehrm-buzz-comment-add').find('.oxd-input').first().type('Excelente publicación!{enter}');\ncy.wait(2000);\ncy.contains('Excelente publicación!').should('exist');",
+              "err": {},
+              "uuid": "1ea15b3b-ad60-41de-9929-c83e8c1d087b",
+              "parentUUID": "ec0c1e01-2329-4b08-9810-48d343e4843e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d6e35ea6-4632-4607-b045-7d94c7b46dcc",
+            "1ea15b3b-ad60-41de-9929-c83e8c1d087b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 44050,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

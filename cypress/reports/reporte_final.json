@@ -1,0 +1,368 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 8,
+    "passes": 5,
+    "pending": 0,
+    "failures": 3,
+    "testsRegistered": 8,
+    "passPercent": 62.5,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2026-03-18T21:27:25.630Z",
+    "end": "2026-03-18T21:30:52.644Z",
+    "duration": 207014
+  },
+  "results": [
+    {
+      "uuid": "da46b8ba-6f1a-4b60-a71f-657acdab6ebd",
+      "title": "",
+      "fullFile": "cypress\\e2e\\01_login.cy.js",
+      "file": "cypress\\e2e\\01_login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "66384e2d-82aa-4b45-b8e6-d43286489840",
+          "title": "01 - Inicio de Sesión",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC-001: Login exitoso con credenciales válidas",
+              "fullTitle": "01 - Inicio de Sesión TC-001: Login exitoso con credenciales válidas",
+              "timedOut": null,
+              "duration": 9537,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/auth/login');\ncy.get('[name=\"username\"]').clear().type('Admin');\ncy.get('[name=\"password\"]').clear().type('admin123');\ncy.get('[type=\"submit\"]').click();\ncy.url().should('include', '/dashboard');\ncy.get('.oxd-sidepanel').should('be.visible');\ncy.get('.oxd-main-menu').should('contain', 'PIM');\ncy.get('.oxd-main-menu').should('contain', 'Recruitment');\ncy.get('.oxd-main-menu').should('contain', 'Buzz');",
+              "err": {},
+              "uuid": "18a6580c-e54d-4a71-8d91-138d92bfd559",
+              "parentUUID": "66384e2d-82aa-4b45-b8e6-d43286489840",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-002: Login fallido con credenciales inválidas",
+              "fullTitle": "01 - Inicio de Sesión TC-002: Login fallido con credenciales inválidas",
+              "timedOut": null,
+              "duration": 5805,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/auth/login');\ncy.get('[name=\"username\"]').clear().type('usuarioMalo');\ncy.get('[name=\"password\"]').clear().type('claveErronea');\ncy.get('[type=\"submit\"]').click();\ncy.get('.oxd-alert-content-text').should('be.visible').and('contain', 'Invalid credentials');",
+              "err": {},
+              "uuid": "8bf9219e-b968-4f98-9a25-e507c79b4dc7",
+              "parentUUID": "66384e2d-82aa-4b45-b8e6-d43286489840",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "18a6580c-e54d-4a71-8d91-138d92bfd559",
+            "8bf9219e-b968-4f98-9a25-e507c79b4dc7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 15342,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "ebefb613-8c53-4eea-8e7b-06c776fcea48",
+      "title": "",
+      "fullFile": "cypress\\e2e\\02_pim.cy.js",
+      "file": "cypress\\e2e\\02_pim.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d279f4d1-832b-4ecb-8a99-757afe65c2a9",
+          "title": "02 - PIM: Gestión de Empleados",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC-003: Añadir nuevo empleado con imagen",
+              "fullTitle": "02 - PIM: Gestión de Empleados TC-003: Añadir nuevo empleado con imagen",
+              "timedOut": null,
+              "duration": 25341,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/pim/viewEmployeeList');\ncy.wait(2000);\ncy.contains('Add Employee').click();\ncy.wait(2000);\ncy.get('input[type=\"file\"]').selectFile('cypress/fixtures/employee_photo.jpg', {\n  force: true\n});\ncy.wait(1000);\ncy.get('input[name=\"firstName\"]').clear().type('Carlos');\ncy.get('input[name=\"middleName\"]').clear().type('Andres');\ncy.get('input[name=\"lastName\"]').clear().type('Perez');\ncy.intercept('POST', '**/pim/employees').as('createEmployee');\ncy.get('button[type=\"submit\"]').first().click();\ncy.wait('@createEmployee').its('response.statusCode').should('eq', 200);\ncy.url().should('contain', 'viewPersonalDetails');",
+              "err": {
+                "message": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `createEmployee`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
+                "estack": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `createEmployee`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:76065:18)\n    at Object.errByPath (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:76119:10)\n    at checkForXhr (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:135342:84)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:135368:28)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:4338:29)\n    at whenStable (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:143744:68)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:143685:14)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1724:18)\n    at Promise._fulfill (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1668:18)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:5473:46)\nFrom Your Spec Code:\n    at Context.eval (webpack://orangehrm-qa-automation/./cypress/e2e/02_pim.cy.js:32:7)",
+                "diff": null
+              },
+              "uuid": "31055024-5a82-42eb-b466-1a97c2c3411d",
+              "parentUUID": "d279f4d1-832b-4ecb-8a99-757afe65c2a9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-004: Editar empleado",
+              "fullTitle": "02 - PIM: Gestión de Empleados TC-004: Editar empleado",
+              "timedOut": null,
+              "duration": 29824,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/pim/viewEmployeeList');\ncy.wait(2000);\ncy.get('input[placeholder=\"Type for hints...\"]').first().type('Carlos');\ncy.wait(1000);\ncy.get('button[type=\"submit\"]').click();\ncy.wait(2000);\ncy.get('.oxd-table-row--clickable').first().find('button').first().click();\ncy.wait(2000);\ncy.url().should('contain', 'viewPersonalDetails');\ncy.get('input[name=\"firstName\"]').clear().type('CarlosEditado');\ncy.intercept('PUT', '**/pim/employees/**').as('updateEmployee');\ncy.get('button[type=\"submit\"]').first().click();\ncy.wait('@updateEmployee').its('response.statusCode').should('eq', 200);\ncy.get('.oxd-toast').should('exist');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 15000ms: Expected to find element: `.oxd-table-row--clickable`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 15000ms: Expected to find element: `.oxd-table-row--clickable`, but never found it.\n    at Context.eval (webpack://orangehrm-qa-automation/./cypress/e2e/02_pim.cy.js:48:7)",
+                "diff": null
+              },
+              "uuid": "a5c0374d-1dbf-43c7-b1f6-61f53d18c871",
+              "parentUUID": "d279f4d1-832b-4ecb-8a99-757afe65c2a9",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "31055024-5a82-42eb-b466-1a97c2c3411d",
+            "a5c0374d-1dbf-43c7-b1f6-61f53d18c871"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 55165,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "50c83cff-a42c-4dc5-9787-5af454d66247",
+      "title": "",
+      "fullFile": "cypress\\e2e\\03_recruitment.cy.js",
+      "file": "cypress\\e2e\\03_recruitment.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f7476691-b2ac-422e-900b-516e5fdc201f",
+          "title": "Recruitment - Candidatos y Vacantes",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Debe crear un nuevo candidato",
+              "fullTitle": "Recruitment - Candidatos y Vacantes Debe crear un nuevo candidato",
+              "timedOut": null,
+              "duration": 25686,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/recruitment/viewCandidates');\ncy.wait(2000);\ncy.contains('button', 'Add').click();\ncy.wait(2000);\ncy.url().should('include', 'addCandidate');\ncy.get('input[name=\"firstName\"]').clear().type('Laura');\ncy.get('input[name=\"lastName\"]').clear().type('Gomez');\ncy.get('.oxd-select-wrapper').first().click();\ncy.get('.oxd-select-option').first().click();\ncy.wait(500);\ncy.contains('.oxd-input-group', 'Email').find('input').clear().type('laura.gomez@test.com');\ncy.contains('.oxd-input-group', 'Contact Number').find('input').clear().type('0987654321');\ncy.get('input[type=\"file\"]').selectFile('cypress/fixtures/candidate_cv.pdf', {\n  force: true\n});\ncy.wait(1000);\ncy.intercept('POST', '/web/index.php/api/v2/recruitment/candidates').as('createCandidate');\ncy.get('button[type=\"submit\"]').click();\ncy.wait('@createCandidate', {\n  timeout: 10000\n}).its('response.statusCode').should('eq', 200);\ncy.log('Candidato creado correctamente');",
+              "err": {},
+              "uuid": "98f39de1-2a16-46dc-b560-7bda36f99f04",
+              "parentUUID": "f7476691-b2ac-422e-900b-516e5fdc201f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe crear una nueva vacante",
+              "fullTitle": "Recruitment - Candidatos y Vacantes Debe crear una nueva vacante",
+              "timedOut": null,
+              "duration": 27234,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/recruitment/viewJobVacancy');\ncy.wait(2000);\ncy.contains('button', 'Add').click();\ncy.wait(2000);\ncy.url().should('include', 'addJobVacancy');\nconst vacancyName = 'QA Engineer ' + Date.now();\ncy.get('.oxd-input').eq(1).clear().type(vacancyName);\ncy.get('.oxd-select-wrapper').first().click();\ncy.wait(500);\ncy.get('.oxd-select-option').eq(1).click();\ncy.wait(500);\ncy.get('textarea').clear().type('Vacante para automatizador de pruebas');\ncy.intercept('POST', '/web/index.php/api/v2/recruitment/vacancies').as('createVacancy');\ncy.get('button[type=\"submit\"]').click();\ncy.wait('@createVacancy', {\n  timeout: 10000\n}).its('response.statusCode').should('eq', 200);\ncy.log('Vacante creada correctamente');",
+              "err": {
+                "message": "CypressError: Timed out retrying after 10000ms: `cy.wait()` timed out waiting `10000ms` for the 1st request to the route: `createVacancy`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
+                "estack": "CypressError: Timed out retrying after 10000ms: `cy.wait()` timed out waiting `10000ms` for the 1st request to the route: `createVacancy`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:76065:18)\n    at Object.errByPath (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:76119:10)\n    at checkForXhr (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:135342:84)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:135368:28)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:4338:29)\n    at whenStable (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:143744:68)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:143685:14)\n    at tryCatcher (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1724:18)\n    at Promise._fulfill (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:1668:18)\n    at <unknown> (https://opensource-demo.orangehrmlive.com/__cypress/runner/cypress_runner.js:5473:46)\nFrom Your Spec Code:\n    at Context.eval (webpack://orangehrm-qa-automation/./cypress/e2e/03_recruitment.cy.js:65:7)",
+                "diff": null
+              },
+              "uuid": "d5b22025-05bf-4209-b916-032d15facb49",
+              "parentUUID": "f7476691-b2ac-422e-900b-516e5fdc201f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "98f39de1-2a16-46dc-b560-7bda36f99f04"
+          ],
+          "failures": [
+            "d5b22025-05bf-4209-b916-032d15facb49"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 52920,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "30a68572-6cc3-4648-83e2-7dc41c828303",
+      "title": "",
+      "fullFile": "cypress\\e2e\\04_buzz.cy.js",
+      "file": "cypress\\e2e\\04_buzz.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ec0c1e01-2329-4b08-9810-48d343e4843e",
+          "title": "Buzz Newsfeed - Video y Comentarios",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Debe crear una publicación de video",
+              "fullTitle": "Buzz Newsfeed - Video y Comentarios Debe crear una publicación de video",
+              "timedOut": null,
+              "duration": 28193,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/buzz/viewBuzz');\ncy.wait(4000);\ncy.contains('Share Video').click({\n  force: true\n});\ncy.wait(2000);\ncy.get('body').then($body => {\n  if ($body.find('input[placeholder=\"Paste Video URL\"]').length > 0) {\n    cy.get('input[placeholder=\"Paste Video URL\"]').type('https://www.youtube.com/watch?v=dQw4w9WgXcQ');\n  } else {\n    cy.get('textarea').filter(':visible').last().type('https://www.youtube.com/watch?v=dQw4w9WgXcQ');\n  }\n});\ncy.wait(1000);\ncy.contains('button', 'Share').last().click({\n  force: true\n});\ncy.wait(4000);\ncy.visit('/web/index.php/buzz/viewBuzz');\ncy.wait(3000);\ncy.get('.orangehrm-buzz-post-body').should('exist');",
+              "err": {},
+              "uuid": "d6e35ea6-4632-4607-b045-7d94c7b46dcc",
+              "parentUUID": "ec0c1e01-2329-4b08-9810-48d343e4843e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe comentar en el post más popular",
+              "fullTitle": "Buzz Newsfeed - Video y Comentarios Debe comentar en el post más popular",
+              "timedOut": null,
+              "duration": 15857,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/buzz/viewBuzz');\ncy.wait(4000);\ncy.get('button').find('.bi-chat-text-fill').first().parent().click({\n  force: true\n});\ncy.wait(1500);\ncy.get('.orangehrm-buzz-comment-add').find('.oxd-input').first().type('Excelente publicación!{enter}');\ncy.wait(2000);\ncy.contains('Excelente publicación!').should('exist');",
+              "err": {},
+              "uuid": "1ea15b3b-ad60-41de-9929-c83e8c1d087b",
+              "parentUUID": "ec0c1e01-2329-4b08-9810-48d343e4843e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d6e35ea6-4632-4607-b045-7d94c7b46dcc",
+            "1ea15b3b-ad60-41de-9929-c83e8c1d087b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 44050,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

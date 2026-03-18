@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-03-18T21:27:25.630Z",
+    "end": "2026-03-18T21:27:41.638Z",
+    "duration": 16008,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "da46b8ba-6f1a-4b60-a71f-657acdab6ebd",
+      "title": "",
+      "fullFile": "cypress\\e2e\\01_login.cy.js",
+      "file": "cypress\\e2e\\01_login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "66384e2d-82aa-4b45-b8e6-d43286489840",
+          "title": "01 - Inicio de Sesión",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC-001: Login exitoso con credenciales válidas",
+              "fullTitle": "01 - Inicio de Sesión TC-001: Login exitoso con credenciales válidas",
+              "timedOut": null,
+              "duration": 9537,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/auth/login');\ncy.get('[name=\"username\"]').clear().type('Admin');\ncy.get('[name=\"password\"]').clear().type('admin123');\ncy.get('[type=\"submit\"]').click();\ncy.url().should('include', '/dashboard');\ncy.get('.oxd-sidepanel').should('be.visible');\ncy.get('.oxd-main-menu').should('contain', 'PIM');\ncy.get('.oxd-main-menu').should('contain', 'Recruitment');\ncy.get('.oxd-main-menu').should('contain', 'Buzz');",
+              "err": {},
+              "uuid": "18a6580c-e54d-4a71-8d91-138d92bfd559",
+              "parentUUID": "66384e2d-82aa-4b45-b8e6-d43286489840",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-002: Login fallido con credenciales inválidas",
+              "fullTitle": "01 - Inicio de Sesión TC-002: Login fallido con credenciales inválidas",
+              "timedOut": null,
+              "duration": 5805,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/web/index.php/auth/login');\ncy.get('[name=\"username\"]').clear().type('usuarioMalo');\ncy.get('[name=\"password\"]').clear().type('claveErronea');\ncy.get('[type=\"submit\"]').click();\ncy.get('.oxd-alert-content-text').should('be.visible').and('contain', 'Invalid credentials');",
+              "err": {},
+              "uuid": "8bf9219e-b968-4f98-9a25-e507c79b4dc7",
+              "parentUUID": "66384e2d-82aa-4b45-b8e6-d43286489840",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "18a6580c-e54d-4a71-8d91-138d92bfd559",
+            "8bf9219e-b968-4f98-9a25-e507c79b4dc7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 15342,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
